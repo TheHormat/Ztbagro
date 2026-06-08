@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  db:
+    container_name: postgres-db
+    image: postgres:16-alpine
+    volumes:
+      - ./postgredb:/var/lib/postgresql/data
+    env_file: .env
+    environment:
+      - LC_ALL=C.UTF-8
+    networks:
+      - internal
+
+  web:
+    container_name: Teserrufat
+    build: .
+    restart: "always"
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=ztbagro.az,www.ztbagro.az
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=ztbagro.az,www.ztbagro.az
+      - LETSENCRYPT_EMAIL=thehormat@gmail.com
+      - TIMEOUT=300
+      - HTTP_PORT=8000
+      - STATS_PORT=8001
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+    networks:
+      - nginx-proxy
+      - internal
+
+networks:
+  nginx-proxy:
+    external: true
+  internal:
+    driver: bridge

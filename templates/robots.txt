@@ -1,0 +1,7 @@
+User-agent:*
+Disallow: /akm1n/
+Disallow: /admin/
+Disallow: /rosetta/
+Disallow: /cdn-cgi/.
+
+Sitemap: https://ztbagro.az/sitemap.xml

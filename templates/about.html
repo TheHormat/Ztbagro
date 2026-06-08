@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
+{% block title %}
+
+    {% for i in titles %}
+
+        {% if i.page_type == 'about' %}
+        <title>{{ i.page_title }}</title>
+            <meta name="description" content="{{ i.page_description }}" />
+        {% endif %}
+    {% endfor %}
+{% endblock title %}
+
+
+{% block body %}
+        <!--Form Back Drop-->
+        <div class="form-back-drop"></div>
+
+        <!-- Hidden Sidebar -->
+        <section class="hidden-bar">
+            <div class="inner-box text-center">
+                <div class="cross-icon"><span class="fa fa-times"></span></div>
+                <div class="title">
+                    <h4>{% trans "Get Appointment" %}</h4>
+                </div>
+
+                <!--Appointment Form-->
+                <div class="appointment-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="text" value="" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" value="" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn">{% trans "Submit now" %}</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Social Icons-->
+                <div class="social-style-one">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </section>
+        <!--End Hidden Sidebar -->
+
+
+        <!-- Page Banner Start -->
+        <section class="page-banner text-white py-165 rpy-50"
+                 {% for i in titles %}
+                 {% if i.page_type == 'about' %}
+            style="background-image: url({{ i.page_slide_image.url }});"
+                 {% endif %}
+        {% endfor %}>
+            <div class="container">
+                <div class="banner-inner">
+                    <h1 class="page-title wow fadeInUp delay-0-2s">{% trans 'Haqqımızda' %}</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a></li>
+                            <li class="breadcrumb-item active">{% trans 'Haqqımızda' %}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+
+        <!-- About Section Start -->
+        <section class="about-page-section rel z-1 py-50 rpy-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-three-content rmb-35 wow fadeInLeft delay-0-2s">
+                            <div class="section-title mb-20">
+                                <span class="sub-title mb-20">{% trans 'Haqqımızda' %}</span>
+                                <h2>{{ about.head }}</h2>
+                            </div>
+                            <p>{{ about.description|safe }}</p>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-lg-right">
+                        <div class="about-video wow fadeInRight delay-0-2s about-img">
+                            <img class="image" src="{{ about.main_image.url }}" alt="About">
+                            <img class="bg-shape" src="{% static 'assets/images/about/about-bg-shape.png' %}" alt="Shape">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <img src="{% static 'assets/images/shapes/about-page.png' %}" alt="Shape" class="shape">
+        </section>
+        <!-- About Section End -->
+
+
+
+
+        <!-- FAQS STARTS -->
+        <section class="faq-section rel z-1 pt-50 rpt-40">
+            <div class="container">
+                <div class="section-title text-center mb-30">
+                    <span class="sub-title mb-10">{% trans 'Tez-tez verilən suallar' %}</span>
+                    <!-- <h2>Have any Questions</h2> -->
+                </div>
+                <div class="faqs wow fadeInUp delay-0-2s animated" id="faqs"
+                    style="visibility: visible; animation-name: fadeInUp;">
+{% for q in questions  %}
+    {% if forloop.first %}
+                    <div class="card">
+                        <h5 class="card-header" data-toggle="collapse" data-target="#collapse{{ forloop }}" aria-expanded="true"
+                            aria-controls="collapse{{ forloop }}">{{ q.question }}<i
+                                class="fas fa-chevron-right"></i>
+                        </h5>
+                        <div id="collapse{{ forloop }}" class="collapse show content" data-parent="#faqs">
+                            <div class="card-body">
+                                <p>{{ q.answer|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+    {% else %}
+                    <div class="card">
+                        <h5 class="collapsed card-header" data-toggle="collapse" data-target="#collapse{{ forloop }}"
+                            aria-expanded="false" aria-controls="collapse{{ forloop }}">{{ q.question }} <i class="fas fa-chevron-right"></i>
+                        </h5>
+                        <div id="collapse{{ forloop }}" class="collapse content" data-parent="#faqs">
+                            <div class="card-body">
+                                <p>{{ q.answer|safe }}</p>
+                            </div>
+                        </div>
+                    </div>
+    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="faq-shapes">
+                <img class="shape-one" src="{% static 'assets/images/shapes/faq-shape1.png' %}" alt="Shape">
+                <img class="shape-two" src="{% static 'assets/images/shapes/faq-shape2.png' %}" alt="Shape">
+                <img class="shape-four" src="{% static 'assets/images/shapes/faq-shape4.png' %}" alt="Shape">
+            </div>
+        </section>
+        <!-- FAQS ENDS -->
+
+{% endblock body %}
+
+  

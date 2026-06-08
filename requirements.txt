@@ -1,0 +1,15 @@
+Django
+django-ckeditor
+Pillow
+PyYAML
+psycopg2
+django-rosetta
+django-modeltranslation
+requests
+python-dotenv
+xmltodict
+asgiref
+uWSGI
+bs4
+django-social-share==2.3.0
+dj-database-url

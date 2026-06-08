@@ -1,0 +1,370 @@
+{% load static %}
+
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
+
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="keyword" content="{{ main_datas.keywords }}" />
+    <meta name="author" content="ZTB Agro" />
+
+    <!-- Title -->
+    {% block title %}
+
+    {% endblock title %}
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="{{ index_config.favicon.url }}">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Oswald:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Flaticon -->
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome-5.14.0.min.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-4.5.3.min.css' %}">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css' %}">
+    <!-- Nice Select -->
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.min.css' %}">
+    <!-- Animate -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'assets/css/slick.min.css' %}">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        <!-- <div class="preloader"></div> -->
+
+        <!-- main header -->
+        <header class="main-header">
+
+            <div class="header-top-wrap bg-light-green text-white py-10">
+                <div class="container-fluid">
+                    <div class="header-top">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-6">
+                                <div class="top-left">
+                                    <ul>
+                                        {% for e in index_config.emails_set.all %}
+                                            {% if e.is_main %}
+                                        <li><i class="far fa-envelope"></i> <b>E-poçt :</b> <a
+                                                href="mailto:{{ e.emails }}"><span>{{ e.emails }}</span></a>
+                                        </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-5 col-lg-6">
+                                <div class="top-right text-lg-right">
+                                    <ul>
+                                    {% for p in index_config.phones_set.all %}
+                                        {% if p.is_main %}
+                                        <li><i class="far fa-phone"></i> <b>{% trans 'Zəng edin' %} :</b> <a href="tel:{{ p.phones }}">{{ p.phones }}</a></li>
+                                        <li>
+                                        {% endif %}
+                                        {% endfor %}
+                                          <div class="social-style-one">
+                                                {% for s in social_media %}
+                                                    {% if s.social_type == 'wp' %}
+                                                <a href="https://wa.me/{{ s.social_link }}"><i class="fab fa-whatsapp"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'fb' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-facebook-f"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'insta' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-instagram"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'tiktok' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-tiktok"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'telegram' %}
+                                                <a href="https://wa.me/{{ s.social_link }}"><i class="fab fa-telegram"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'twitter' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-twitter"></i></a>
+                                                {% endif %}
+                                                    {% if s.social_type == 'yt' %}
+                                                    <a href="{{ s.social_link }}"><i class="fab fa-youtube"></i></a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Header-Upper-->
+            <div class="header-upper">
+                <div class="container-fluid clearfix">
+
+                    <div class="header-inner d-flex align-items-center">
+                        <div class="logo-outer">
+                            <div class="logo"><a href="{% url 'home' %}"><img src="{{index_config.header_logo.url}}" alt="Logo"
+                                        title="Logo"></a></div>
+                        </div>
+
+                        <div class="nav-outer clearfix">
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-lg">
+                                <div class="navbar-header">
+                                    <div class="mobile-logo my-15">
+                                        <a href="{% url 'home' %}">
+                                            <img src="{{ index_config.header_logo.url }}" alt="Logo" title="Logo">
+                                        </a>
+                                    </div>
+
+                                    <!-- Toggle Button -->
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <div class="navbar-collapse collapse clearfix">
+                                    <ul class="navigation clearfix">
+                                        <li class=""><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a> </li>
+                                        <li><a href="{% url 'about' %}">{% trans 'Haqqımızda' %}</a></li>
+                                        <li class="dropdown"><a href="{% url 'services' %}">{% trans 'Xidmətlərimiz' %}</a>
+                                            <ul>
+                                                {% for cat in categories %}
+                                                <li><a href="{% url 'services' %}?cat={{ cat.name }}">{{ cat.name}}</a></li>
+                                              {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li class=""><a href="{% url 'our_works' %}">{% trans 'İşlərimiz' %}</a> </li>
+                                        <li><a href="{% url 'contact' %}">{% trans 'Əlaqə' %}</a></li>
+                                        <li class="dropdown lang"><a href="{% url 'set_lang' LANGUAGE_CODE %}">{{ LANGUAGE_CODE }}</a>
+                                            <ul>
+                                                {% for i in LANGUAGES %}
+                                    {% if LANGUAGE_CODE != i.0 %}
+                                        <li><a href="{% url 'set_lang' i.0 %}">{{ i.0|upper }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </nav>
+                            <!-- Main Menu End-->
+                        </div>
+
+                        <!-- Menu Button -->
+                        <div class="menu-icons">
+                            <!-- Nav Search -->
+                            <div class="nav-search py-15">
+                                <button class="far fa-search"></button>
+                                <form action="{% url 'services' %}?service={{ service }}" class="hide">
+                                    <input type="text" placeholder="{% trans 'Axtar' %}" class="searchbox" name="service">
+                                    <button type="submit" class="searchbutton far fa-search"></button>
+                                </form>
+                            </div>
+
+                 
+                            {% for i in index_config.phones_set.all %}
+                                {% if i.is_main %}
+                                    <a href="tel:{{ i.phones|cut:" " }}" target="_blank" 
+                                        class="theme-btn number-btn">{{ i.phones }}
+                                    <i class="fas fa-angle-double-right"></i></a>
+                                {% endif %}
+                            {% endfor %}
+                            <!-- menu sidbar -->
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Header Upper-->
+        </header>
+
+
+
+        {% block body %}
+
+
+
+        {% endblock body %}
+
+              <!-- Footer Area Start -->
+              <footer class="main-footer bg-green text-white">
+                <div class="container">
+                    <div class="footer-top-newsletter py-80 mb-75">
+                        <div class="section-title">
+                            <h2>{% trans 'Abunə olun' %}</h2>
+                        </div>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="email" placeholder="{% trans 'E-poçt' %}" required name="sub">
+                            <button class="theme-btn">{% trans 'Abunə olun' %}<i class="fas fa-angle-double-right"></i></button>
+                        </form>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-4 col-md-6 order-md-2">
+                            <div class="footer-widget about-widget text-center">
+                                <div class="footer-logo mb-30">
+                                    <a href="{% url 'home' %}">
+                                        <img src="{{ index_config.footer_logo.url }}" alt="Logo">
+                                    </a>
+                                </div>
+                                <p>{{ index_config.footer_text|safe }}</p>
+                                <div class="social-style-two pt-10">
+                                {% for s in social_media %}
+                                    {% if s.social_type == 'fb' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-facebook-f"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'wp' %}
+                                <a href="https://wa.me/{{ s.social_link }}"><i class="fab fa-whatsapp"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'insta' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-instagram"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'tiktok' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-tiktok"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'telegram' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-telegram"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'twitter' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-twitter"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'linkedin' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-linkedin-in"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'yt' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-youtube"></i></a>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 order-md-1">
+                            <div class="footer-widget menu-widget two-column">
+                                <h4 class="footer-title">{% trans 'Faydalı keçidlər' %}</h4>
+                                <ul>
+                                    <li><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a></li>
+{#                                    <li><a href="contact.html">Documentation</a></li>#}
+                                    <li><a href="{% url 'about' %}">{% trans 'Haqqımızda' %}</a></li>
+{#                                    <li><a href="services.html">Elements</a></li>#}
+                                    <li><a href="{% url 'services' %}">{% trans 'Xidmətlər' %}</a></li>
+{#                                    <li><a href="shop-grid.html">Best Products</a></li>#}
+{#                                    <li><a href="farmers.html">Meet Farmers</a></li>#}
+{#                                    <li><a href="service-details.html">Technology</a></li>#}
+{#                                    <li><a href="blog-grid.html">Latest News</a></li>#}
+                                    <li><a href="{% url 'our_works' %}">{% trans 'Bizim işlərimiz' %}</a></li>
+                                    <li><a href="{% url 'contact' %}">{% trans 'Əlaqə' %}</a></li>
+{#                                    <li><a href="contact.html">Setting & Privacy</a></li>#}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 order-md-3">
+                            <div class="footer-widget contact-widget">
+                                <h4 class="footer-title">{% trans 'Bizimlə əlaqə' %}</h4>
+
+                                <ul>
+                                    {% for i in index_config.address_set.all %}
+                                        {% if i.is_main %}
+                                    <li>
+                                        <i class="fal fa-map-marker-alt"></i>
+                                        {{ i.address }}
+                                    </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% for j in index_config.phones_set.all %}
+                                    {% if j.is_main %}
+                                    <li>
+                                        <i class="far fa-phone"></i>
+                                        <a href="tel:{{ j.phones }}">{{ j.phones }}</a>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% for e in index_config.emails_set.all %}
+                                    {% if e.is_main %}
+                                    <li>
+                                        <i class="far fa-envelope"></i>
+                                        <a
+                                            href="mailto:{{ e.emails }}"><span>{{ e.emails }}</span></a>
+                                    </li>
+                                    {% endif %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="copyright-area pt-25 pb-10">
+                        <p>Copyright © 2023 Khan Buta Group. All Rights Reserved.</p>
+
+    
+                        <!-- Scroll Top Button -->
+                        <button class="scroll-top scroll-to-target" data-target="html"><span
+                                class="fas fa-angle-double-up"></span></button>
+                    </div>
+                </div>
+                <div class="footer-shapes">
+                    <img class="footer-bg" src="{% static 'assets/images/background/footer-bg-shape.png' %}" alt="Shape">
+                    <img class="shape-one" src="{% static 'assets/images/shapes/footer1.png' %}" alt="Shape">
+                    <img class="shape-two" src="{% static 'assets/images/shapes/footer2.png' %}" alt="Shape">
+                    <img class="shape-three" src="{% static 'assets/images/shapes/footer3.png' %}" alt="Shape">
+                    <img class="shape-four" src="{% static 'assets/images/shapes/footer4.png' %}" alt="Shape">
+                </div>
+            </footer>
+            <!-- Footer Area End -->
+    
+        </div>
+        <!--End pagewrapper-->
+    
+    
+        <!-- Jquery -->
+        <script data-cfasync="false" src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+        <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+        <!-- Bootstrap -->
+        <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+        <!-- Appear Js -->
+        <script src="{% static 'assets/js/appear.min.js' %}"></script>
+        <!-- Slick -->
+        <script src="{% static 'assets/js/slick.min.js' %}"></script>
+        <!-- Magnific Popup -->
+        <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+        <!-- Nice Select -->
+        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+        <!-- Image Loader -->
+        <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+        <!-- Circle Progress -->
+        <script src="{% static 'assets/js/circle-progress.min.js' %}"></script>
+        <!-- Isotope -->
+        <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+        <!--  WOW Animation -->
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+        <!-- Custom script -->
+        <script src="{% static 'assets/js/script.js' %}"></script>
+    
+    </body>
+    
+    </html>

@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
+{% block title %}
+
+<meta name="description" content="{{ service.page_description }}" />
+<title>{{ service.page_title }}</title>
+
+{% endblock title %}
+
+{% block body %}
+
+
+
+        <!--Form Back Drop-->
+        <div class="form-back-drop"></div>
+
+        <!-- Hidden Sidebar -->
+        <section class="hidden-bar">
+            <div class="inner-box text-center">
+                <div class="cross-icon"><span class="fa fa-times"></span></div>
+                <div class="title">
+                    <h4>{% trans "Get Appointment" %}</h4>
+                </div>
+
+                <!--Appointment Form-->
+                <div class="appointment-form">
+                    <form method="post" action="https://demo.webtend.net/html/munfirm/contact.html">
+                        <div class="form-group">
+                            <input type="text" name="text" value="" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" value="" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn">{% trans "Submit now" %}</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Social Icons-->
+                <div class="social-style-one">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </section>
+        <!--End Hidden Sidebar -->
+
+
+        <!-- Page Banner Start -->
+        <section class="page-banner text-white py-165 rpy-50"
+                 {% for i in titles %}
+                 {% if i.page_type == 'service_detail' %}
+            style="background-image: url({{ i.page_slide_image.url }});"
+                 {% endif %}
+        {% endfor %}>
+            <div class="container">
+                <div class="banner-inner">
+                    <h1 class="page-title wow fadeInUp delay-0-2s">{% trans "Xidmət detalı" %}</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a></li>
+                            <li class="breadcrumb-item active">{% trans "Xidmət detalı" %}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+
+        <!-- Service Details Section Start -->
+        <section class="service-details-page rel z-1 pb-40 rpt-35  rpb-40">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-8 mt-65">
+                        <div class="service-details-content">
+                            <div class="image wow fadeInUp delay-0-2s">
+                                <img src="{{ service.main_image.url }}" alt="Service">
+                            </div>
+                            <h3>{{ service.head_1 }}</h3>
+                            <p>{{ service.desc_1|safe }}</p>
+
+                           {% if service.head_2 %} <h4>{{ service.head_2 }}</h4>{% endif %}
+                           {% if service.desc_2 %}<p>{{ service.desc_2|safe }}</p>{% endif %}
+                            <ul class="list-style-two pt-10">
+                                {% for q in service.servicequalities_set.all %}
+                                <li>{{ q.name }}</li>
+                                {% endfor %}
+
+                            </ul>
+                            {% for i in social_media %}
+                                {% if i.social_type == 'wp' %}
+                            <a href="https://wa.me/{{ i.social_link }}" target="_blank"
+                                class="enter-wp mt-3 mention"><i class="fab fa-whatsapp"></i>{% trans 'Bizimlə əlaqə' %}</a>
+                            {% endif %}
+                            {% endfor %}
+                            <div class="product-preview-images rmb-55 wow fadeInLeft delay-0-2s animated"
+                                style="visibility: visible; animation-name: fadeInLeft;">
+                                {% for i in service.serviceimages_set.all %}
+                                <a href="{{ i.images.url }}">
+                                    <img src="{{ i.images.url }}" alt="Preview">
+                                </a>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-8">
+                        <div class="service-sidebar mt-65">
+
+                            <div class="widget widget-menu wow fadeInUp delay-0-4s">
+                                <h4 class="widget-title">{% trans 'Xidmətlərimiz' %}</h4>
+                                <ul>
+                                    {% for cat in categories %}
+                                    <li><a href="{% url 'services' %}?cat={{ cat.name }}">{{ cat.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="widget widget-cta wow fadeInUp delay-0-2s">
+                                <div class="cta-widget-content text-white">
+                                    <span class="sub-title my-10">{{sidebar.top_sentence}}</span>
+                                    <h2>{{sidebar.bottom_sentence}}</h2>
+                                    <img src="{% static 'assets/images/shapes/wave-white.png' %}" alt="Wave"><br>
+                                    <a href="{% url 'contact' %}" class="theme-btn style-three bg-white mt-30">{% trans 'Bizimlə əlaqə' %} <i
+                                            class="fas fa-angle-double-right"></i></a>
+                                    <img class="bg" src="{% static 'assets/images/widgets/cta-widget.png' %}" alt="Flower">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Service Details Section End -->
+
+
+      {% endblock body %}

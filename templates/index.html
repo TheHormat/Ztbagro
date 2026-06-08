@@ -1,0 +1,895 @@
+{% load static %}
+
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Title -->
+{% for i in titles %}
+   {% if i.page_type == 'home' %}
+       <meta name="description" content="{{ i.page_description }}" />
+    <title>{{ i.page_title }}</title>
+        {% endif %}
+{% endfor %}
+    <!-- Favicon Icon -->
+    <link rel="icon" type="image/x-icon" href="{{ index_config.favicon.url }}">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700&amp;family=Oswald:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Flaticon -->
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.min.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome-5.14.0.min.css' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-4.5.3.min.css' %}">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.min.css' %}">
+    <!-- Nice Select -->
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.min.css' %}">
+    <!-- Animate -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'assets/css/slick.min.css' %}">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        <!-- <div class="preloader"></div> -->
+
+        <!-- main header -->
+        <header class="main-header menu-absolute">
+
+            <div class="header-top-wrap bg-light-green text-white py-10">
+                <div class="container-fluid">
+                    <div class="header-top">
+                        <div class="row">
+                            <div class="col-xl-7 col-lg-6">
+                                <div class="top-left">
+                                    <ul>
+                                        {% for e in index_config.emails_set.all %}
+                                            {% if e.is_main %}
+                                        <li><i class="far fa-envelope"></i> <b>{% trans 'E-poçt :' %}</b> <a
+                                                href="mailto:{{ e.emails }}"><span>{{ e.emails }}</span></a>
+                                        </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-xl-5 col-lg-6">
+                                <div class="top-right text-lg-right">
+                                    <ul>
+                                    {% for i in index_config.phones_set.all %}
+                                        {% if i.is_main %}
+                                        <li><i class="far fa-phone"></i> <b>{% trans 'Zəng edin' %}: </b> <a href="tel:{{ i.phones }}">{{ i.phones }}</a></li>
+                                        <li>
+                                        {% endif %}
+                                        {% endfor %}
+                                            <div class="social-style-one">
+                                                {% for s in social_media %}
+                                                    {% if s.social_type == 'wp' %}
+                                                <a href="https://wa.me/{{ s.social_link }}"><i class="fab fa-whatsapp"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'fb' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-facebook-f"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'insta' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-instagram"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'tiktok' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-tiktok"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'telegram' %}
+                                                <a href="https://wa.me/{{ s.social_link }}"><i class="fab fa-telegram"></i></a>
+                                                    {% endif %}
+                                                    {% if s.social_type == 'twitter' %}
+                                                <a href="{{ s.social_link }}"><i class="fab fa-twitter"></i></a>
+                                                {% endif %}
+                                                    {% if s.social_type == 'yt' %}
+                                                    <a href="{{ s.social_link }}"><i class="fab fa-youtube"></i></a>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Header-Upper-->
+            <div class="header-upper">
+                <div class="container-fluid clearfix">
+
+                    <div class="header-inner d-flex align-items-center">
+                        <div class="logo-outer">
+                            <div class="logo"><a href="{% url 'home' %}"><img src="{{index_config.header_logo.url}}" alt="Logo"
+                                        title="Logo"></a></div>
+                        </div>
+
+                        <div class="nav-outer clearfix">
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-lg">
+                                <div class="navbar-header">
+                                    <div class="mobile-logo my-15">
+                                        <a href="{% url 'home' %}">
+                                            <img src="{{index_config.header_logo.url}}" alt="Logo" title="Logo">
+                                        </a>
+                                    </div>
+
+                                    <!-- Toggle Button -->
+                                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                                        data-target=".navbar-collapse">
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+
+                                <div class="navbar-collapse collapse clearfix">
+                                    <ul class="navigation clearfix">
+                                        <li class=""><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a> </li>
+                                        <li><a href="{% url 'about' %}">{% trans 'Haqqımızda' %}</a></li>
+                                        <li class="dropdown"><a href="{% url 'services' %}">{% trans 'Xidmətlərimiz' %}</a>
+                                            <ul>
+                                                 {% for cat in categories %}
+                                                <li><a href="{% url 'services' %}?cat={{ cat.name }}">{{ cat.name}}</a></li>
+                                              {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li class=""><a href="{% url 'our_works' %}">{% trans 'İşlərimiz' %}</a> </li>
+                                        <li><a href="{% url 'contact' %}">{% trans 'Əlaqə' %}</a></li>
+                                        <li class="dropdown lang"><a href="{% url 'set_lang' LANGUAGE_CODE %}">{{ LANGUAGE_CODE }}</a>
+                                            <ul>
+
+                                                          {% for i in LANGUAGES %}
+                                    {% if LANGUAGE_CODE != i.0 %}
+                                        <li><a href="{% url 'set_lang' i.0 %}">{{ i.0|upper }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </nav>
+                            <!-- Main Menu End-->
+                        </div>
+
+                        <!-- Menu Button -->
+                        <div class="menu-icons">
+                            <!-- Nav Search -->
+                            <div class="nav-search py-15">
+                                <button class="far fa-search"></button>
+                                <form action="{% url 'services' %}" class="hide">
+                                    <input type="text" placeholder="{% trans 'Axtar' %}" class="searchbox" required="" name="service">
+                                    <button type="submit" class="searchbutton far fa-search"></button>
+                                </form>
+                            </div>
+                            {% for i in index_config.phones_set.all %}
+                                {% if i.is_main %}
+                            <a href="tel:{{ i.phones }}" target="_blank" class="theme-btn number-btn">{{ i.phones }} <i class="fas fa-angle-double-right"></i></a>
+                            {% endif %}
+                            {% endfor %}
+                            <!-- menu sidbar -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--End Header Upper-->
+        </header>
+
+
+        <!--Form Back Drop-->
+        <div class="form-back-drop"></div>
+
+        <!-- Hidden Sidebar -->
+        <section class="hidden-bar">
+            <div class="inner-box text-center">
+                <div class="cross-icon"><span class="fa fa-times"></span></div>
+                <div class="title">
+                    <h4>{% trans "Get Appointment" %}</h4>
+                </div>
+
+                <!--Appointment Form-->
+                <div class="appointment-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="text" value="" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" value="" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn">{% trans "Submit now" %}</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Social Icons-->
+                <div class="social-style-one">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </section>
+        <!--End Hidden Sidebar -->
+
+
+        <!-- Slider Section Start -->
+        <section class="slider-section bg-lighter slider-bg-img">
+            <div class="main-slider-active">
+                {% for i in index_slider %}
+                <div class="slider-single-item slide-one"
+                    style="background-image: url({{ i.images.url }});">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-lg-12">
+                                <div class="slider-content">
+                                    <div class="sub-title mb-20">{{ i.head_1 }}</div>
+                                    <h1>{{ i.main_sentence }}</h1>
+                                    <h6>{{ i.little_sentence }}</h6>
+                                    <div class="slider-btns mt-30">
+                                        <a href="{% url 'services' %}" class="theme-btn">{% trans 'Xidmətlərimiz' %}<i
+                                                class="fas fa-angle-double-right"></i></a>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="slide-shapes">
+                        <img class="two-leaf" src="{% static 'assets/images/slider/two-lear.png' %}" alt="Leaf">
+                        <img class="half-leaf" src="{% static 'assets/images/slider/half-leaf.png' %}" alt="Leaf">
+                        <img class="leaf-one" src="{% static 'assets/images/slider/leaf-1.png' %}" alt="Leaf">
+                        <img class="leaf-two" src="{% static 'assets/images/slider/leaf-2.png' %}" alt="Leaf">
+                    </div>
+                </div>
+             {% endfor %}
+            </div>
+        </section>
+        <!-- Slider Section End -->
+
+        <!-- About Section Start -->
+        <section class="about-section pt-85 rpt-55 pb-50 rpb-40">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="about-images wow fadeInLeft delay-0-2s">
+                            <div class="row align-items-center">
+                                <div class="col-6">
+                                    <img class="about" src="{{ about.left_image.url }}" alt="About">
+                                </div>
+                                <div class="col-6">
+                                    <img src="{{ about.right_top_image.url }}" alt="About">
+                                    <img src="{{ about.right_bottom_image.url }}" alt="About">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="about-content rpt-65 wow fadeInRight delay-0-2s">
+                            <div class="section-title mb-10">
+                                <span class="sub-title mb-20">{% trans 'Haqqımızda' %}</span>
+                                <h2>{{ about.head }}</h2>
+                            </div>
+
+                            <div class="tab-content pt-25">
+                                <div class="tab-pane fade show active" id="agriculture">
+                                    <p>{{ about.description|safe|truncatechars:"1220" }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section End -->
+
+
+        <!-- Offer Banners Start -->
+        <section class="offer-banners-area mt-30">
+            <div class="container">
+                <div class="col-lg-12 wow fadeInUp delay-0-2s text-center">
+                    <div class="section-title mb-20">
+                        <span class="sub-title mb-20">{% trans 'Populyar xidmətlərimiz' %}</span>
+                        <h2 class="mb-30">{% trans 'Keyfiyyətlə gördüyümüz işlər' %}</h2>
+                    </div>
+                </div>
+                <div class="row">
+                    {%  for s in services  %}
+                    <div class="col-xl-4 col-md-6">
+                        <div class="offer-banner-item color-two wow fadeInUp delay-0-2s">
+                            <div class="content">
+                                <span class="sub-title"> {{ s.head_1}} </span>
+                                <h4>{{ s.category.name }}</h4>
+                                <a href="{{ s.get_absolute_url }} " class="theme-btn style-two">{% trans 'Ətraflı' %}<i
+                                        class="fas fa-angle-double-right"></i></a>
+                            </div>
+
+                            <img class="offer-bg" src="{% static 'assets/images/offers/offer-baner-bg1.png' %}" alt="Offer BG">
+                        </div>
+                    </div>
+                  {% endfor %}
+                </div>
+            </div>
+        </section>
+        <!-- Offer Banners End -->
+
+
+        <!-- Product Section Start -->
+        <!-- <section class="product-section pt-40 rpt-70 pb-50 rpb-50">
+            <div class="container-fluid">
+                <div class="section-title text-center mb-60">
+                    <span class="sub-title mb-20">Popular Foods and Vegetables</span>
+                    <h2>Quality Fruits & Vegetables</h2>
+                </div>
+                <div class="product-active">
+                    <div class="product-item wow fadeInUp delay-0-2s">
+                        <span class="offer">53 Off</span>
+                        <div class="image">
+                            <img src="assets/images/products/product1.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Organic Brocolli</a></h5>
+                            <span class="price">
+                                <del>25</del>
+                                <span>18</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-item wow fadeInUp delay-0-3s">
+                        <div class="image">
+                            <img src="assets/images/products/product2.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Fresh Carrots</a></h5>
+                            <span class="price">
+                                <span>49.58</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-item wow fadeInUp delay-0-4s">
+                        <span class="offer bg-red">sale</span>
+                        <div class="image">
+                            <img src="assets/images/products/product3.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Organic Brocolli</a></h5>
+                            <span class="price">
+                                <del>25</del>
+                                <span>18</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-item wow fadeInUp delay-0-5s">
+                        <span class="offer">20 Off</span>
+                        <div class="image">
+                            <img src="assets/images/products/product4.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Chiken Egg</a></h5>
+                            <span class="price">
+                                <del>55</del>
+                                <span>36</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-item wow fadeInUp delay-0-6s">
+                        <div class="image">
+                            <img src="assets/images/products/product5.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Fresh Gooseberry</a></h5>
+                            <span class="price">
+                                <span>205</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-item wow fadeInUp delay-0-7s">
+                        <span class="offer">53 Off</span>
+                        <div class="image">
+                            <img src="assets/images/products/product6.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Fresh Croissants</a></h5>
+                            <span class="price">
+                                <del>25</del>
+                                <span>18</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="product-item wow fadeInUp delay-0-8s">
+                        <span class="offer">25 Off</span>
+                        <div class="image">
+                            <img src="assets/images/products/product7.png" alt="Product">
+                        </div>
+                        <div class="content">
+                            <div class="ratting">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h5><a href="product-details.html">Chicken Egg’s</a></h5>
+                            <span class="price">
+                                <del>25</del>
+                                <span>18</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- Product Section End -->
+
+
+        <!-- Video Area Start -->
+        <div class="video-area mt-50">
+
+            <div class="section-title mb-20 text-center">
+                <span class="sub-title mb-20">{% trans 'Biz nə iş görürük ?' %}</span>
+                <h2 class="mb-30">{% trans 'Xidmətlərimiz sizin üçündür' %}</h2>
+            </div>
+
+            <div class="container">
+                <div class="video-inner" style="background-image: url({{ video_part.video_cover_img.url }});">
+                    <i class="flaticon-leaf-1"></i>
+                    <span class="video-text">{{ video_part.word }}</span>
+                    <a href="{{ video_part.video_url }}" class="mfp-iframe video-play"><i
+                            class="fas fa-play"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Video Area End -->
+
+
+        <!-- Special Offer Start -->
+        <!-- <section class="special-offer bg-lighter pt-250 pb-80">
+            <div class="special-offer-content text-center py-130 rpy-100 wow fadeInUp delay-0-2s">
+                <div class="section-title mb-30">
+                    <span class="sub-title mb-20">35% Off for Fruits</span>
+                    <h2>Special Deal Of This Week</h2>
+                </div>
+                <p>On the other hand we denounce with righteous indignation and dislike men who are beguiled and
+                    demoralized by the charms</p>
+                <ul class="count-down mt-35" data-date="Jul 31, 2022 00:00:00">
+                    <li><span id="days">09</span>days</li>
+                    <li><span id="hours">45</span>Hours</li>
+                    <li><span id="minutes">36</span>Minutes</li>
+                    <li><span id="seconds">28</span>Seconds</li>
+                </ul>
+                <div class="count-down-btns mt-10">
+                    <a href="shop-grid.html" class="theme-btn">Shop Now <i class="fas fa-angle-double-right"></i></a>
+                    <a href="about.html" class="theme-btn style-two">use code <i
+                            class="fas fa-angle-double-right"></i></a>
+                </div>
+            </div>
+            <img class="offer-bg" src="assets/images/offers/special-offer-bg.png" alt="Offer BG">
+            <img class="munakoiso" src="assets/images/shapes/munakoiso.png" alt="Munakoiso">
+            <img class="litchi" src="assets/images/shapes/litchi.png" alt="Litchi">
+            <img class="special-offer-left" src="assets/images/offers/offer-left.png" alt="Offer">
+            <img class="special-offer-right" src="assets/images/offers/offer-right.png" alt="Offer">
+        </section> -->
+        <!-- Special Offer End -->
+
+
+        <!-- Gallery Area Start -->
+        <!-- <section class="gallery-area pt-50 rpt-40">
+            <div class="container">
+                <div class="gallery-header mb-35">
+                    <div class="row align-items-end">
+                        <div class="col-lg-8">
+                            <div class="section-title mb-25">
+                                <span class="sub-title mb-15">Photo Gallery</span>
+                                <h2>Insite Photo Gallery</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 text-lg-right">
+                            <div class="slider-arrows mb-25">
+                                <button class="gallery-prev"><i class="fas fa-arrow-left"></i></button>
+                                <button class="gallery-next"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="gallery-active">
+                    <div class="gallery-item wow fadeInUp delay-0-2s">
+                        <img src="assets/images/gellery/gallery1.jpg" alt="Gallery">
+                        <div class="gallery-over">
+                            <div class="content">
+                                <h4>Organic Fruits</h4>
+                                <p>Fresh Food</p>
+                            </div>
+                            <a href="portfolio-details.html" class="details-btn"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-item big-item wow fadeInUp delay-0-4s">
+                        <img src="assets/images/gellery/gallery2.jpg" alt="Gallery">
+                        <div class="gallery-over">
+                            <div class="content">
+                                <h4>Organic Fruits Juice</h4>
+                                <p>Fresh Food & Vegetable</p>
+                            </div>
+                            <a href="portfolio-details.html" class="details-btn"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-item wow fadeInUp delay-0-6s">
+                        <img src="assets/images/gellery/gallery3.jpg" alt="Gallery">
+                        <div class="gallery-over">
+                            <div class="content">
+                                <h4>Organic Fruits</h4>
+                                <p>Vegetable</p>
+                            </div>
+                            <a href="portfolio-details.html" class="details-btn"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="gallery-item wow fadeInUp delay-0-8s">
+                        <img src="assets/images/gellery/gallery4.jpg" alt="Gallery">
+                        <div class="gallery-over">
+                            <div class="content">
+                                <h4>Organic Fruits</h4>
+                                <p>Fresh Food</p>
+                            </div>
+                            <a href="portfolio-details.html" class="details-btn"><i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- Gallery Area End -->
+
+
+
+
+        <!-- News Section Start -->
+        <!-- <section class="news-section pt-50 rpt-40 pb-70 rpb-40">
+            <div class="container">
+                <div class="section-title text-center mb-60">
+                    <span class="sub-title mb-20">Read Article Tips</span>
+                    <h2>Latest News & Blog</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="news-item wow fadeInUp delay-0-2s">
+                            <div class="image">
+                                <img src="assets/images/news/news1.jpg" alt="News">
+                                <span class="date"><b>25</b> July</span>
+                            </div>
+                            <div class="content">
+                                <span class="sub-title">Vegetable</span>
+                                <h4><a href="blog-details.html">Unicode UTF8 Character Sets They Sltimate Guide
+                                        Systems</a></h4>
+                                <a href="blog-details.html" class="read-more">Read More <i
+                                        class="fas fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="news-item wow fadeInUp delay-0-4s">
+                            <div class="image">
+                                <img src="assets/images/news/news2.jpg" alt="News">
+                                <span class="date"><b>25</b> July</span>
+                            </div>
+                            <div class="content">
+                                <span class="sub-title">Farming</span>
+                                <h4><a href="blog-details.html">Quality Foods Requirments For Every Human Body’s</a>
+                                </h4>
+                                <a href="blog-details.html" class="read-more">Read More <i
+                                        class="fas fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="news-item wow fadeInUp delay-0-6s">
+                            <div class="image">
+                                <img src="assets/images/news/news3.jpg" alt="News">
+                                <span class="date"><b>25</b> July</span>
+                            </div>
+                            <div class="content">
+                                <span class="sub-title">Organic Fruits</span>
+                                <h4><a href="blog-details.html">Choose Awesome Vegetables For Your Daily Life
+                                        Routine</a></h4>
+                                <a href="blog-details.html" class="read-more">Read More <i
+                                        class="fas fa-angle-double-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="news-shapes">
+                <img class="onion" src="assets/images/shapes/onion.png" alt="Onion">
+                <img class="two-leaf" src="assets/images/slider/two-lear.png" alt="Leaf">
+                <img class="half-leaf" src="assets/images/slider/half-leaf.png" alt="Leaf">
+                <img class="leaf-two" src="assets/images/shapes/leaf-three.png" alt="Leaf">
+                <img class="leaf-three" src="assets/images/shapes/leaf-four.png" alt="Leaf">
+            </div>
+        </section> -->
+        <!-- News Section End -->
+        <!-- CONTACT AREA STARTS -->
+        <section class="contact-info-area rel z-1 pt-130 rpt-100 pb-40">
+            <div class="container">
+                <div class="section-title contact-title mb-50 wow fadeInUp delay-0-2s animated"
+                    style="visibility: visible; animation-name: fadeInUp;">
+                    <span class="sub-title mb-15">{% trans 'Bizlə daim əlaqədə olun' %}</span>
+                    <h3>{% trans 'Bizə ehtiyac var ?' %}</h3>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-4s animated"
+                            style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="icon">
+                                <img src="{% static 'assets/images/contact/icon1.png' %}" alt="Icon">
+                            </div>
+                            <div class="content">
+                                <h4>{% trans 'Məkan' %}</h4>
+                                {% for j in index_config.address_set.all %}
+                                    {% if j.is_main %}
+                                <span>{{ j.address }}</span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-5s animated"
+                            style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="icon">
+                                <img src="{% static 'assets/images/contact/icon2.png' %}" alt="Icon">
+                            </div>
+                            <div class="content">
+                                <h4>{% trans 'E-poçt' %}</h4>
+                                {% for e in index_config.emails_set.all %}
+                                <a target="_blank"
+                                    href="mailto:{{ e.emails }}"><span>{{ e.emails }}</span></a><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-6s animated"
+                            style="visibility: visible; animation-name: fadeInUp;">
+                            <div class="icon">
+                                <img src="{% static 'assets/images/contact/icon3.png' %}" alt="Icon">
+                            </div>
+                            <div class="content">
+                                <h4>{% trans 'Əlaqə' %}</h4>
+                                {% for t in index_config.phones_set.all %}
+                                <a href="callto:{{ t.phones }}">{{ t.phones }}</a><br>
+                              {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-shapes">
+                <img class="leafs" src="{% static 'assets/images/shapes/contact-leafs.png' %}" alt="Leafs">
+                <img class="pumpkin" src="{% static 'assets/images/shapes/pumpkin.png' %}" alt="pumpkin">
+            </div>
+        </section>
+        <!-- CONTACTS AREA END -->
+
+        <!-- Footer Area Start -->
+        <footer class="main-footer bg-green text-white">
+            <div class="container">
+                <div class="footer-top-newsletter py-40 mb-40">
+                    <div class="section-title footer-section">
+                        <h2>{% trans 'Yeniliklərdən xəbərdar olun' %}</h2>
+                    </div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="email" placeholder="{% trans 'E-poçt' %}" required name="sub">
+                        <button class="theme-btn">{% trans 'Abunə olun' %} <i class="fas fa-angle-double-right"></i></button>
+                    </form>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-6 order-md-1">
+                        <div class="footer-widget about-widget">
+                            <div class="footer-logo mb-30">
+                                <a href="{% url 'home' %}">
+                                    <img src="{{ index_config.footer_logo.url }}" alt="Logo">
+                                </a>
+                            </div>
+                            <p>{{ index_config.footer_text|safe }}</p>
+                            <div class="social-style-two pt-10">
+                                {% for s in social_media %}
+                                    {% if s.social_type == 'fb' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-facebook-f"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'wp' %}
+                                <a href="https://wa.me/{{ s.social_link }}"><i class="fab fa-whatsapp"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'insta' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-instagram"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'tiktok' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-tiktok"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'telegram' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-telegram"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'twitter' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-twitter"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'linkedin' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-linkedin-in"></i></a>
+                                    {% endif %}
+                                    {% if s.social_type == 'yt' %}
+                                <a href="{{ s.social_link }}"><i class="fab fa-youtube"></i></a>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 order-md-2 pl-100">
+                        <div class="footer-widget menu-widget two-column">
+                            <h4 class="footer-title">{% trans 'Faydalı keçidlər' %}</h4>
+                            <ul class="no-flex">
+                                <li><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a></li>
+                                <li><a href="{% url 'about' %}">{% trans 'Haqqımızda' %}</a></li>
+                                <li><a href="{% url 'services' %}">{% trans 'Xidmətlər' %}</a></li>
+                                <li><a href="{% url 'our_works' %}">{% trans 'Bizim işlərimiz' %}</a></li>
+                                <li><a href="{% url 'contact' %}">{% trans 'Əlaqə' %}</a></li>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 order-md-3">
+                        <div class="footer-widget contact-widget">
+                            <h4 class="footer-title">{% trans 'Bizimlə əlaqə' %}</h4>
+
+                            <ul>
+                                {% for i in index_config.address_set.all %}
+                                    {% if i.is_main %}
+                                <li>
+                                    <i class="fal fa-map-marker-alt"></i>
+                                    {{i.address}}
+                                </li>
+                                    {% endif %}
+                                {% endfor %}
+                            {% for j in index_config.phones_set.all %}
+                                {% if j.is_main %}
+                                <li>
+                                    <i class="far fa-phone"></i>
+                                    <a href="tel:{{ j.phones }}" target="_blank">{{ j.phones }}</a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% for e in index_config.emails_set.all %}
+                                {% if e.is_main %}
+                                <li>
+                                    <i class="far fa-envelope" target="_blank"></i>
+                                    <a
+                                        href="mailto:{{ e.emails }}"><span>{{ e.emails}}</span></a>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright-area pt-25 pb-10">
+                    <p>Copyright © 2023 <a target="_blank" href="https://khanbutagroup.az/">Khan Buta Group</a>. All
+                        Rights Reserved.
+                    </p>
+
+                    <!-- Scroll Top Button -->
+                    <button class="scroll-top scroll-to-target" data-target="html"><span
+                            class="fas fa-angle-double-up"></span></button>
+                </div>
+            </div>
+            <div class="footer-shapes">
+                <img class="footer-bg" src="{% static 'assets/images/background/footer-bg-shape.png' %}" alt="Shape">
+                <img class="shape-one" src="{% static 'assets/images/shapes/footer1.png' %}" alt="Shape">
+                <img class="shape-two" src="{% static 'assets/images/shapes/footer2.png' %}" alt="Shape">
+                <img class="shape-three" src="{% static 'assets/images/shapes/footer3.png' %}" alt="Shape">
+                <img class="shape-four" src="{% static 'assets/images/shapes/footer4.png' %}" alt="Shape">
+            </div>
+        </footer>
+        <!-- Footer Area End -->
+
+    </div>
+    <!--End pagewrapper-->
+
+
+    <!-- Jquery -->
+    <script data-cfasync="false" src="{% static '../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <!-- Appear Js -->
+    <script src="{% static 'assets/js/appear.min.js' %}"></script>
+    <!-- Slick -->
+    <script src="{% static 'assets/js/slick.min.js' %}"></script>
+    <!-- Magnific Popup -->
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <!-- Nice Select -->
+    <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+    <!-- Image Loader -->
+    <script src="{% static 'assets/js/imagesloaded.pkgd.min.js' %}"></script>
+    <!-- Circle Progress -->
+    <script src="{% static 'assets/js/circle-progress.min.js' %}"></script>
+    <!-- Isotope -->
+    <script src="{% static 'assets/js/isotope.pkgd.min.js' %}"></script>
+    <!--  WOW Animation -->
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <!-- Custom script -->
+    <script src="{% static 'assets/js/script.js' %}"></script>
+
+</body>
+
+</html>

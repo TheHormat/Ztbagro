@@ -1,0 +1,238 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-29 15:21+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: services/choices.py:17
+msgid "Home Page"
+msgstr ""
+
+#: services/choices.py:18
+msgid "About page"
+msgstr ""
+
+#: services/choices.py:19
+msgid "Contact"
+msgstr ""
+
+#: services/choices.py:20
+msgid "Services"
+msgstr ""
+
+#: services/choices.py:21
+msgid "Our Works"
+msgstr ""
+
+#: services/choices.py:22
+msgid "Service detail"
+msgstr ""
+
+#: templates/about.html:30 templates/contact.html:27 templates/index.html:212
+#: templates/ourworks.html:31 templates/service-details.html:28
+#: templates/services.html:31
+msgid "Get Appointment"
+msgstr ""
+
+#: templates/about.html:47 templates/contact.html:44 templates/index.html:229
+#: templates/ourworks.html:47 templates/service-details.html:44
+#: templates/services.html:47
+msgid "Submit now"
+msgstr ""
+
+#: templates/about.html:73 templates/about.html:77 templates/about.html:93
+#: templates/base.html:150 templates/base.html:271 templates/index.html:152
+#: templates/index.html:301 templates/index.html:802
+msgid "Haqqımızda"
+msgstr ""
+
+#: templates/about.html:76 templates/base.html:149 templates/base.html:269
+#: templates/contact.html:74 templates/index.html:151 templates/index.html:801
+#: templates/ourworks.html:76 templates/service-details.html:73
+#: templates/services.html:76
+msgid "Ana səhifə"
+msgstr ""
+
+#: templates/about.html:119
+msgid "Tez-tez verilən suallar"
+msgstr ""
+
+#: templates/base.html:80 templates/index.html:82
+msgid "Zəng edin"
+msgstr ""
+
+#: templates/base.html:151 templates/index.html:153 templates/index.html:260
+#: templates/service-details.html:124 templates/services.html:73
+#: templates/services.html:77
+msgid "Xidmətlərimiz"
+msgstr ""
+
+#: templates/base.html:158 templates/index.html:160 templates/ourworks.html:73
+#: templates/ourworks.html:77
+msgid "İşlərimiz"
+msgstr ""
+
+#: templates/base.html:159 templates/base.html:279 templates/index.html:161
+#: templates/index.html:729 templates/index.html:805
+msgid "Əlaqə"
+msgstr ""
+
+#: templates/base.html:183 templates/index.html:186
+msgid "Axtar"
+msgstr ""
+
+#: templates/base.html:218 templates/base.html:223 templates/index.html:755
+msgid "Abunə olun"
+msgstr ""
+
+#: templates/base.html:222 templates/index.html:714 templates/index.html:754
+msgid "E-poçt"
+msgstr ""
+
+#: templates/base.html:267 templates/index.html:799
+msgid "Faydalı keçidlər"
+msgstr ""
+
+#: templates/base.html:273 templates/index.html:803
+msgid "Xidmətlər"
+msgstr ""
+
+#: templates/base.html:278 templates/index.html:804
+msgid "Bizim işlərimiz"
+msgstr ""
+
+#: templates/base.html:286 templates/contact.html:71 templates/contact.html:75
+#: templates/index.html:813 templates/service-details.html:106
+#: templates/service-details.html:136
+msgid "Bizimlə əlaqə"
+msgstr ""
+
+#: templates/contact.html:88
+msgid "Əlaqə saxlayın"
+msgstr ""
+
+#: templates/contact.html:89
+msgid "Bizə ehtiyacınız var ?"
+msgstr ""
+
+#: templates/contact.html:98
+msgid "Ünvan"
+msgstr ""
+
+#: templates/contact.html:112
+msgid "Email"
+msgstr ""
+
+#: templates/contact.html:126
+msgid "Əlaqə nömrələri"
+msgstr ""
+
+#: templates/contact.html:151
+msgid "Bizimlə əlaqə saxlayın"
+msgstr ""
+
+#: templates/contact.html:152
+msgid "Mesajınızı çatdırın"
+msgstr ""
+
+#: templates/contact.html:181
+msgid "Göndərin"
+msgstr ""
+
+#: templates/index.html:69
+msgid "E-poçt :"
+msgstr ""
+
+#: templates/index.html:323
+msgid "Populyar xidmətlərimiz"
+msgstr ""
+
+#: templates/index.html:324
+msgid "Keyfiyyətlə gördüyümüz işlər"
+msgstr ""
+
+#: templates/index.html:334
+msgid "Ətraflı"
+msgstr ""
+
+#: templates/index.html:502
+msgid "Biz nə iş görürük ?"
+msgstr ""
+
+#: templates/index.html:503
+msgid "Xidmətlərimiz sizin üçündür"
+msgstr ""
+
+#: templates/index.html:687
+msgid "Bizlə daim əlaqədə olun"
+msgstr ""
+
+#: templates/index.html:688
+msgid "Bizə ehtiyac var ?"
+msgstr ""
+
+#: templates/index.html:698
+msgid "Məkan"
+msgstr ""
+
+#: templates/index.html:750
+msgid "Yeniliklərdən xəbərdar olun"
+msgstr ""
+
+#: templates/ourworks.html:90
+msgid "Bizim haqqımızda"
+msgstr ""
+
+#: templates/ourworks.html:91
+msgid "İşlərimizlə tanış olun"
+msgstr ""
+
+#: templates/service-details.html:70 templates/service-details.html:74
+msgid "Xidmət detalı"
+msgstr ""
+
+#: templates/services.html:102
+msgid "Daha çox"
+msgstr ""
+
+#: teserrufat/forms.py:17
+msgid "Ad və soyadınız"
+msgstr ""
+
+#: teserrufat/forms.py:18
+msgid "Əlaqə nömrəsi"
+msgstr ""
+
+#: teserrufat/forms.py:19
+msgid "E-poçt ünvanınız"
+msgstr ""
+
+#: teserrufat/forms.py:20
+msgid "Mesajınız"
+msgstr ""
+
+#: teserrufat/forms.py:26
+msgid "Telefon nömrəsində yalnışlıq var.."
+msgstr ""
+
+#: teserrufat/views.py:128
+msgid "Məlumatlar göndərildi"
+msgstr ""
+
+#: teserrufat/views.py:132
+msgid "Problem yaşandı.."
+msgstr ""

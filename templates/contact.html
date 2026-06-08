@@ -1,0 +1,215 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block title %}
+    {% for i in titles %}
+        {% if i.page_type == 'contact' %}
+            <meta name="description" content="{{ i.page_description }}" />
+            <title>{{ i.page_title }}</title>
+        {% endif %}
+    {% endfor %}
+{% endblock title %}
+{% block body %}
+
+
+        <!--Form Back Drop-->
+        <div class="form-back-drop"></div>
+
+        <!-- Hidden Sidebar -->
+        <section class="hidden-bar">
+            <div class="inner-box text-center">
+                <div class="cross-icon"><span class="fa fa-times"></span></div>
+                <div class="title">
+                    <h4>{% trans "Get Appointment" %}t</h4>
+                </div>
+
+                <!--Appointment Form-->
+                <div class="appointment-form">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="text" value="" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" value="" placeholder="Email Address" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Message" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="theme-btn">{% trans "Submit now" %}</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Social Icons-->
+                <div class="social-style-one">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </section>
+        <!--End Hidden Sidebar -->
+
+
+        <!-- Page Banner Start -->
+        <section class="page-banner text-white py-165 rpy-130"
+            {% for i in titles %}
+                 {% if i.page_type == 'contact' %}
+                    style="background-image: url({{ i.page_slide_image.url }});
+                 {% endif %}
+                 "
+            {% endfor %}>
+            <div class="container">
+                <div class="banner-inner">
+                    <h1 class="page-title wow fadeInUp delay-0-2s">{% trans 'Bizimlə əlaqə' %}</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center wow fadeInUp delay-0-4s">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">{% trans 'Ana səhifə' %}</a></li>
+                            <li class="breadcrumb-item active">{% trans 'Bizimlə əlaqə' %}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </section>
+        <!-- Page Banner End -->
+
+
+        <!-- Contact Info Start -->
+        <section class="contact-info-area rel z-1 pt-70 rpt-100">
+            <div class="container">
+                <div class="section-title contact-title mb-50 wow fadeInUp delay-0-2s">
+                    <span class="sub-title mb-15">{% trans 'Əlaqə saxlayın' %}</span>
+                    <h3>{% trans 'Bizə ehtiyacınız var ?' %}</h3>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-4s">
+                            <div class="icon">
+                                <img src="{% static 'assets/images/contact/icon1.png' %}" alt="Icon">
+                            </div>
+                            <div class="content">
+                                <h4>{% trans 'Ünvan' %}</h4>
+                                {% for i in index_config.address_set.all %}
+
+                                <span>{{ i.address }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-5s">
+                            <div class="icon">
+                                <img src="{% static 'assets/images/contact/icon2.png' %}" alt="Icon">
+                            </div>
+                            <div class="content">
+                                <h4>{% trans "Email" %}</h4>
+                                {% for j in index_config.emails_set.all %}
+                                <a
+                                    href="mailto:{{ j.emails }}"><span>{{ j.emails }}</span></a><br>
+                              {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="contact-info-item wow fadeInUp delay-0-6s">
+                            <div class="icon">
+                                <img src="{% static 'assets/images/contact/icon3.png' %}" alt="Icon">
+                            </div>
+                            <div class="content">
+                                <h4>{% trans 'Əlaqə nömrələri' %}</h4>
+                                {% for t in index_config.phones_set.all %}
+                                <a href="tel:{{ t.phones }}">{{ t.phones }}</a><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-shapes">
+                <img class="leafs" src="{% static 'assets/images/shapes/contact-leafs.png' %}" alt="Leafs">
+            </div>
+        </section>
+        <!-- Contact Info End -->
+
+
+        <!-- Contact From Start -->
+        <section class="contact-form-area rel z-1 pt-70 rpt-70 pb-70 rpb-100">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <form id="contactForm" class="contact-form rmb-65 wow fadeInLeft delay-0-2s" name="contactForm"
+                             method="post">
+                            {% csrf_token %}
+                            <div class="section-title contact-title mb-55">
+                                <span class="sub-title mb-15">{% trans 'Bizimlə əlaqə saxlayın' %}</span>
+                                <h3>{% trans 'Mesajınızı çatdırın' %}</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.full_name}}
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        {{form.phone_number}}
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{form.email}}
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        {{form.message}}
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group mb-0">
+                                        <button type="submit" class="theme-btn style-two">{% trans "Göndərin" %}<i
+                                                class="fas fa-angle-double-right"></i></button>
+                                        <div id="msgSubmit" class="hidden"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                         {% if messages %}
+            {% for message in messages %}
+
+            <div class="alert alert-{{ message.tags }}" role="alert">
+
+              {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="contact-right-image wow fadeInRight delay-0-4s">
+                            <img class="contact-img" src="{{ photo.image.url }}" alt="Contact From">
+                            <img class="bg" src="{% static 'assets/images/contact/contact-right-bg.png' %}" alt="Contact From BG">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-shapes">
+                <img class="leaf" src="{% static 'assets/images/shapes/leaf-1.png' %}" alt="Leaf">
+                <img class="shape" src="{% static 'assets/images/shapes/contact-shape.png' %}" alt="Shape">
+                <img class="two-leaf" src="{% static 'assets/images/shapes/two-lear.png' %}" alt="Leaf">
+            </div>
+        </section>
+        <!-- Contact From End -->
+
+
+      {% endblock body %}

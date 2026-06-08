@@ -1,0 +1,249 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-29 15:21+0400\n"
+"PO-Revision-Date: 2023-09-22 14:37+0400\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
+
+#: services/choices.py:17
+msgid "Home Page"
+msgstr "Главная"
+
+#: services/choices.py:18
+msgid "About page"
+msgstr "О нас"
+
+#: services/choices.py:19
+msgid "Contact"
+msgstr "Контакты"
+
+#: services/choices.py:20
+msgid "Services"
+msgstr "Услуги"
+
+#: services/choices.py:21
+msgid "Our Works"
+msgstr "Наша работа"
+
+#: services/choices.py:22
+msgid "Service detail"
+msgstr "Детали услуги"
+
+#: templates/about.html:30 templates/contact.html:27 templates/index.html:212
+#: templates/ourworks.html:31 templates/service-details.html:28
+#: templates/services.html:31
+msgid "Get Appointment"
+msgstr "Получить назначение"
+
+#: templates/about.html:47 templates/contact.html:44 templates/index.html:229
+#: templates/ourworks.html:47 templates/service-details.html:44
+#: templates/services.html:47
+msgid "Submit now"
+msgstr "Отправить сейчас"
+
+#: templates/about.html:73 templates/about.html:77 templates/about.html:93
+#: templates/base.html:150 templates/base.html:271 templates/index.html:152
+#: templates/index.html:301 templates/index.html:802
+msgid "Haqqımızda"
+msgstr "О нас"
+
+#: templates/about.html:76 templates/base.html:149 templates/base.html:269
+#: templates/contact.html:74 templates/index.html:151 templates/index.html:801
+#: templates/ourworks.html:76 templates/service-details.html:73
+#: templates/services.html:76
+msgid "Ana səhifə"
+msgstr "Главная"
+
+#: templates/about.html:119
+msgid "Tez-tez verilən suallar"
+msgstr "Часто задаваемые вопросы"
+
+#: templates/base.html:80 templates/index.html:82
+msgid "Zəng edin"
+msgstr "Позвонить"
+
+#: templates/base.html:151 templates/index.html:153 templates/index.html:260
+#: templates/service-details.html:124 templates/services.html:73
+#: templates/services.html:77
+msgid "Xidmətlərimiz"
+msgstr "Наши сервисы"
+
+#: templates/base.html:158 templates/index.html:160 templates/ourworks.html:73
+#: templates/ourworks.html:77
+msgid "İşlərimiz"
+msgstr "Нашы работы"
+
+#: templates/base.html:159 templates/base.html:279 templates/index.html:161
+#: templates/index.html:729 templates/index.html:805
+msgid "Əlaqə"
+msgstr "Контакты"
+
+#: templates/base.html:183 templates/index.html:186
+msgid "Axtar"
+msgstr "Поиск"
+
+#: templates/base.html:218 templates/base.html:223 templates/index.html:755
+msgid "Abunə olun"
+msgstr "Подписаться"
+
+#: templates/base.html:222 templates/index.html:714 templates/index.html:754
+msgid "E-poçt"
+msgstr "Электронная почта"
+
+#: templates/base.html:267 templates/index.html:799
+msgid "Faydalı keçidlər"
+msgstr "Меню"
+
+#: templates/base.html:273 templates/index.html:803
+msgid "Xidmətlər"
+msgstr "Услуги"
+
+#: templates/base.html:278 templates/index.html:804
+msgid "Bizim işlərimiz"
+msgstr "Нашы работы"
+
+#: templates/base.html:286 templates/contact.html:71 templates/contact.html:75
+#: templates/index.html:813 templates/service-details.html:106
+#: templates/service-details.html:136
+msgid "Bizimlə əlaqə"
+msgstr "Связаться с нами"
+
+#: templates/contact.html:88
+msgid "Əlaqə saxlayın"
+msgstr "Cвяжитесь с нами"
+
+#: templates/contact.html:89
+msgid "Bizə ehtiyacınız var ?"
+msgstr "Мы вам нужны?"
+
+#: templates/contact.html:98
+msgid "Ünvan"
+msgstr "Адрес"
+
+#: templates/contact.html:112
+msgid "Email"
+msgstr "Электронная почта"
+
+#: templates/contact.html:126
+msgid "Əlaqə nömrələri"
+msgstr "Kонтактные телефоны"
+
+#: templates/contact.html:151
+msgid "Bizimlə əlaqə saxlayın"
+msgstr "Свяжитесь с нами"
+
+#: templates/contact.html:152
+msgid "Mesajınızı çatdırın"
+msgstr "Донесите свое сообщение"
+
+#: templates/contact.html:181
+msgid "Göndərin"
+msgstr "Отправить"
+
+#: templates/index.html:69
+msgid "E-poçt :"
+msgstr "Электронная почта :"
+
+#: templates/index.html:323
+msgid "Populyar xidmətlərimiz"
+msgstr "Наши популярные услуги"
+
+#: templates/index.html:324
+msgid "Keyfiyyətlə gördüyümüz işlər"
+msgstr "Что мы делаем с качеством"
+
+#: templates/index.html:334
+msgid "Ətraflı"
+msgstr "Далее"
+
+#: templates/index.html:502
+msgid "Biz nə iş görürük ?"
+msgstr "Что мы делаем?"
+
+#: templates/index.html:503
+msgid "Xidmətlərimiz sizin üçündür"
+msgstr "Наши услуги для вас"
+
+#: templates/index.html:687
+msgid "Bizlə daim əlaqədə olun"
+msgstr "Оставайтесь на связи с нами"
+
+#: templates/index.html:688
+msgid "Bizə ehtiyac var ?"
+msgstr "Нуждаетесь в нас?"
+
+#: templates/index.html:698
+msgid "Məkan"
+msgstr "Место"
+
+#: templates/index.html:750
+msgid "Yeniliklərdən xəbərdar olun"
+msgstr "Следите за обновлениями"
+
+#: templates/ourworks.html:90
+msgid "Bizim haqqımızda"
+msgstr "О нас"
+
+#: templates/ourworks.html:91
+msgid "İşlərimizlə tanış olun"
+msgstr "Познакомьтесь с нашей работой"
+
+#: templates/service-details.html:70 templates/service-details.html:74
+#, fuzzy
+#| msgid "Xidmətlər"
+msgid "Xidmət detalı"
+msgstr "Услуги"
+
+#: templates/services.html:102
+msgid "Daha çox"
+msgstr "Далее"
+
+#: teserrufat/forms.py:17
+msgid "Ad və soyadınız"
+msgstr "Ваше имя и фамилия"
+
+#: teserrufat/forms.py:18
+msgid "Əlaqə nömrəsi"
+msgstr "Контактный номер"
+
+#: teserrufat/forms.py:19
+msgid "E-poçt ünvanınız"
+msgstr "Ваш электронный адрес"
+
+#: teserrufat/forms.py:20
+msgid "Mesajınız"
+msgstr "Ваше сообщение"
+
+#: teserrufat/forms.py:26
+msgid "Telefon nömrəsində yalnışlıq var.."
+msgstr "В номере телефона ошибка."
+
+#: teserrufat/views.py:128
+msgid "Məlumatlar göndərildi"
+msgstr "Информация отправлена"
+
+#: teserrufat/views.py:132
+msgid "Problem yaşandı.."
+msgstr "Произошла ошибка.."
+
+#~ msgid "xidməti"
+#~ msgstr "услуга"
+
+#~ msgid "İstənilən köməklik üçün"
+#~ msgstr "За любую помощь"
