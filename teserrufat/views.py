@@ -5,7 +5,7 @@ from django.urls import reverse, translate_url
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from teserrufat.models import (Service, DetailSidebar, FrequentlyAskedQuestions, AboutModel,
-                               ContactImage,IndexVideo, OurWorks, IndexConfig, IndexSlider)
+                               ContactImage,IndexVideo, OurWorks, IndexConfig, IndexSlider, Product, Partner)
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
 
@@ -32,6 +32,7 @@ def home_view(request):
     services = Service.objects.order_by("-created_at")[:6]
     # services_total = Service.objects.order_by("-created_at")
     keyword = request.GET.get("service")
+    partners = Partner.objects.order_by("-created_at")
 
 
 
@@ -42,6 +43,7 @@ def home_view(request):
         "keyword": keyword,
         "index_slider": index_slider,
         "index_config": index_config,
+        "partners": partners,
     }
     return render(request, "index.html", context)
 
@@ -187,3 +189,39 @@ def service_detail(request, slug):
 
     }
     return render(request, "service-details.html", context)
+
+
+def products_view(request):
+    products = Product.objects.order_by("-created_at")
+
+    if request.GET.get("cat"):
+        products = products.filter(category__name__icontains=request.GET.get("cat"))
+
+    paginator = Paginator(products, 9)
+    page = request.GET.get('page', 1)
+    p = paginator.get_page(page)
+
+    try:
+        p = paginator.page(page)
+    except PageNotAnInteger:
+        p = paginator.page(1)
+    except EmptyPage:
+        p = paginator.page(paginator.num_pages)
+    context = {
+        "products": products,
+        "p": p,
+        "cat": request.GET.get("cat"),
+
+    }
+
+    return render(request, "products.html", context)
+
+
+def product_detail(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    context = {
+
+        "product": product,
+
+    }
+    return render(request, "product-details.html", context)

@@ -667,6 +667,26 @@
         }
 
 
+        // 25. Partner Scroll Link
+        if ($('.partner-scroll-link').length) {
+            $(".partner-scroll-link").on('click', function (e) {
+                var target = $(this).attr('data-target');
+                if ($(target).length) {
+                    e.preventDefault();
+                    $('html, body').animate({
+                        scrollTop: $(target).offset().top
+                    }, 1000);
+                }
+            });
+        }
+
+        if (window.location.hash === '#partnors' && $('#partnors').length) {
+            $('html, body').animate({
+                scrollTop: $('#partnors').offset().top
+            }, 1000);
+        }
+
+
         /* 25. CountDown Start */
         if ($('.count-down').length !== 0) {
             var $date = $('.count-down').attr('data-date');

@@ -446,3 +446,125 @@ class Subscribe(DateMixin, SlugMixin):
         super(Subscribe, self).save(*args, **kwargs)
 
 
+class ProductCategory(DateMixin, SlugMixin):
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Məhsul kateqoriyası"
+        verbose_name_plural = "Məhsul kateqoriyaları"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = Generator.create_slug_shortcode(size=15, model_=ProductCategory)
+        super(ProductCategory, self).save(*args, **kwargs)
+
+
+class Product(DateMixin, SlugMixin):
+    category = models.ForeignKey(ProductCategory, on_delete=models.SET_NULL, null=True, blank=True)
+    main_image = models.ImageField(upload_to=Uploader.upload_photo_for_product, verbose_name="Əsas şəkil")
+    title = models.CharField(max_length=255, verbose_name="Başlıq")
+    subtitle = models.CharField(max_length=255, null=True, blank=True, verbose_name="Alt başlıq")
+    short_description = models.TextField(null=True, blank=True, verbose_name="Qısa açıqlama")
+
+    head_1 = models.CharField(max_length=255, null=True, blank=True, verbose_name="Başlıq 1")
+    desc_1 = RichTextField(null=True, blank=True, verbose_name="Açıqlama 1")
+    head_2 = models.CharField(max_length=255, null=True, blank=True, verbose_name="Başlıq 2")
+    desc_2 = RichTextField(null=True, blank=True, verbose_name="Açıqlama 2")
+
+    page_title = models.CharField(max_length=300, null=True, blank=True, verbose_name="Sehifenin title i")
+    page_description = models.TextField(null=True, blank=True, verbose_name="Sehifenin descriptionu")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Məhsul"
+        verbose_name_plural = "Məhsullar"
+
+    def get_absolute_url(self):
+        return reverse("product_detail", kwargs={"slug": self.slug})
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = Generator.create_slug_shortcode(size=15, model_=Product)
+        super(Product, self).save(*args, **kwargs)
+
+
+class ProductDocument(DateMixin, SlugMixin):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=255, verbose_name="Sənədin adı")
+    file = models.FileField(upload_to=Uploader.upload_document_for_product, verbose_name="Sənəd")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Məhsul sənədi"
+        verbose_name_plural = "Məhsul sənədləri"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = Generator.create_slug_shortcode(size=15, model_=ProductDocument)
+        super(ProductDocument, self).save(*args, **kwargs)
+
+
+class ProductTable(DateMixin, SlugMixin):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
+    title = models.CharField(max_length=255, verbose_name="Cədvəlin başlığı")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Məhsul cədvəli"
+        verbose_name_plural = "Məhsul cədvəlləri"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = Generator.create_slug_shortcode(size=15, model_=ProductTable)
+        super(ProductTable, self).save(*args, **kwargs)
+
+
+class ProductTableRow(DateMixin, SlugMixin):
+    table = models.ForeignKey(ProductTable, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.CharField(max_length=255, verbose_name="Ad")
+    value = models.CharField(max_length=255, verbose_name="Dəyər")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Cədvəl sətri"
+        verbose_name_plural = "Cədvəl sətirləri"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = Generator.create_slug_shortcode(size=15, model_=ProductTableRow)
+        super(ProductTableRow, self).save(*args, **kwargs)
+
+
+class Partner(DateMixin, SlugMixin):
+    image = models.ImageField(upload_to=Uploader.upload_logo_for_partner, verbose_name="Loqo")
+    link = models.URLField(max_length=500, null=True, blank=True, verbose_name="Link")
+
+    def __str__(self):
+        return self.slug
+
+    class Meta:
+        ordering = ("-created_at",)
+        verbose_name = "Partnyor"
+        verbose_name_plural = "Partnyorlar"
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = Generator.create_slug_shortcode(size=15, model_=Partner)
+        super(Partner, self).save(*args, **kwargs)
+

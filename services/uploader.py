@@ -30,3 +30,15 @@ class Uploader:
     @staticmethod
     def upload_image_for_pages_slider(instance, filename):
         return f"pagesSlide/{instance.slug}/{filename}"
+
+    @staticmethod
+    def upload_photo_for_product(instance, filename):
+        return f"product/{instance.slug}/{filename}"
+
+    @staticmethod
+    def upload_document_for_product(instance, filename):
+        return f"product/{instance.product.slug}/documents/{filename}"
+
+    @staticmethod
+    def upload_logo_for_partner(instance, filename):
+        return f"partner/{instance.slug}/{filename}"

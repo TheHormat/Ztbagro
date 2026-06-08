@@ -1,6 +1,7 @@
 from modeltranslation.translator import TranslationOptions, register
 from teserrufat.models import (Service, Category, ServiceQualities, FrequentlyAskedQuestions, AboutModel, IndexConfig,
-                               IndexVideo, IndexSlider, Address, TitleDescription)
+                               IndexVideo, IndexSlider, Address, TitleDescription, ProductCategory, Product,
+                               ProductDocument, ProductTable, ProductTableRow)
 
 
 @register(Service)
@@ -49,4 +50,30 @@ class AddressTranslationOptions(TranslationOptions):
 @register(TitleDescription)
 class TitleDescriptionTranslationOptions(TranslationOptions):
     fields = ("page_title", "page_description")
+
+
+@register(ProductCategory)
+class ProductCategoryTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+
+@register(Product)
+class ProductTranslationOptions(TranslationOptions):
+    fields = ("title", "subtitle", "short_description", "head_1", "desc_1", "head_2", "desc_2",
+              "page_title", "page_description")
+
+
+@register(ProductDocument)
+class ProductDocumentTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+
+@register(ProductTable)
+class ProductTableTranslationOptions(TranslationOptions):
+    fields = ("title",)
+
+
+@register(ProductTableRow)
+class ProductTableRowTranslationOptions(TranslationOptions):
+    fields = ("name", "value")
 

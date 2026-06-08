@@ -3,7 +3,8 @@ from django.contrib import admin
 from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 from teserrufat.models import (Service, ServiceImages, Category, ServiceQualities, FrequentlyAskedQuestions,
                                AboutModel,IndexVideo, OurWorks, Contact, IndexConfig,DetailSidebar, IndexSlider,
-                               ContactImage, Phones, Emails, Address, TitleDescription, SocialMedia, Subscribe)
+                               ContactImage, Phones, Emails, Address, TitleDescription, SocialMedia, Subscribe,
+                               ProductCategory, Product, ProductDocument, ProductTable, ProductTableRow, Partner)
 
 
 class ImageInLineService(admin.StackedInline):
@@ -177,6 +178,70 @@ class IndexSliderAdmin(TranslationAdmin):
         css = {
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
+
+
+class DocumentInLineProduct(admin.StackedInline):
+    model = ProductDocument
+    extra = 1
+
+
+class ProductTableRowInline(TranslationTabularInline):
+    model = ProductTableRow
+    extra = 1
+
+
+@admin.register(ProductCategory)
+class ProductCategoryAdmin(TranslationAdmin):
+    class Media:
+        js = (
+
+            'modeltranslation/js/tabbed_translation_fields.js',
+            'modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+        )
+
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
+
+@admin.register(Product)
+class ProductAdmin(TranslationAdmin):
+    inlines = [DocumentInLineProduct]
+
+    class Media:
+        js = (
+
+            'modeltranslation/js/tabbed_translation_fields.js',
+            'modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+        )
+
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
+
+@admin.register(ProductTable)
+class ProductTableAdmin(TranslationAdmin):
+    inlines = [ProductTableRowInline]
+
+    class Media:
+        js = (
+
+            'modeltranslation/js/tabbed_translation_fields.js',
+            'modeltranslation/js/force_jquery.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+        )
+
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
+
+@admin.register(Partner)
+class PartnerAdmin(admin.ModelAdmin):
+    pass
 
 
 admin.site.register(OurWorks)

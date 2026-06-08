@@ -1,11 +1,12 @@
 from django.shortcuts import redirect
 
-from teserrufat.models import Category, IndexConfig, TitleDescription, SocialMedia, Subscribe
+from teserrufat.models import Category, IndexConfig, TitleDescription, SocialMedia, Subscribe, ProductCategory
 
 
 
 def my_sender(request):
     categories = Category.objects.order_by("name")
+    product_categories = ProductCategory.objects.order_by("name")
     index_config = IndexConfig.objects.first()
     titles = TitleDescription.objects.all()
     social_media = SocialMedia.objects.all()
@@ -18,6 +19,7 @@ def my_sender(request):
 
     return {
             "categories": categories,
+            "product_categories": product_categories,
             "index_config": index_config,
             "titles": titles,
             "social_media": social_media,

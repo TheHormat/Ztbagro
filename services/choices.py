@@ -20,4 +20,6 @@ PAGE_CHOICES = (
     ("services", _("Services")),
     ("our_works", _("Our Works")),
     ("service_detail", _("Service detail")),
+    ("products", _("Products")),
+    ("product_detail", _("Product detail")),
 )
