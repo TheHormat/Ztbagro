@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import dj_database_url
 from pathlib import Path
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
@@ -103,14 +106,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-else:
+if os.getenv('DATABASE_URL') or os.getenv('POSTGRES_HOST'):
     DATABASE_URL = os.getenv('DATABASE_URL')
     if DATABASE_URL:
         DATABASES = {'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)}
@@ -125,6 +121,13 @@ else:
                 'PORT': str(os.getenv('POSTGRES_PORT', '5432')),
             }
         }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

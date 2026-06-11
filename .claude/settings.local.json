@@ -5,7 +5,19 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(Sort-Object)",
       "PowerShell(head *)",
-      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\PC\\\\Desktop\\\\Teserrufat-main\" -Depth 2 | Where-Object {$_.PSIsContainer} | Select-Object FullName)"
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\PC\\\\Desktop\\\\Teserrufat-main\" -Depth 2 | Where-Object {$_.PSIsContainer} | Select-Object FullName)",
+      "Bash(docker --version)",
+      "Bash(docker compose *)",
+      "Bash(python3 -m pip list)",
+      "Bash(docker info *)",
+      "Bash(brew list *)",
+      "Bash(open -a Docker)",
+      "Bash(break)",
+      "Bash(lsof -nP -iTCP:5432 -sTCP:LISTEN)",
+      "Bash(docker run *)",
+      "Bash(docker rm *)",
+      "Bash(lsof -nP -iTCP:5432)",
+      "Bash(docker exec *)"
     ]
   }
 }

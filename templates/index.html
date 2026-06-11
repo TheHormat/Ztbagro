@@ -172,8 +172,7 @@
                                         <li class=""><a href="{% url 'our_works' %}">{% trans 'İşlərimiz' %}</a> </li>
                                         <li><a href="{% url 'home' %}#partnors" class="partner-scroll-link" data-target="#partnors">{% trans 'Partnyorlar' %}</a></li>
                                         <li><a href="{% url 'contact' %}">{% trans 'Əlaqə' %}</a></li>
-                                        <li class="dropdown lang"><a href="{% url 'set_lang' LANGUAGE_CODE %}">{{
-                                                LANGUAGE_CODE }}</a>
+                                        <li class="dropdown lang"><a href="{% url 'set_lang' LANGUAGE_CODE %}">{{ LANGUAGE_CODE }}</a>
                                             <ul>
 
                                                 {% for i in LANGUAGES %}
