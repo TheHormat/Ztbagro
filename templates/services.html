@@ -63,7 +63,7 @@
         <!-- Page Banner Start -->
         <section class="page-banner text-white py-165 rpy-50"
         {% for i in titles %}
-                 {% if i.page_type == 'services' %}
+                 {% if i.page_type == 'services' and i.page_slide_image %}
                     style="background-image: url({{ i.page_slide_image.url }});
                  {% endif %}
                  "
