@@ -527,38 +527,39 @@
 
         // 20. Client Logo
         if ($('.client-logo-wrap').length) {
+            var clientLogoCount = $('.client-logo-wrap .client-logo-item').length;
             $('.client-logo-wrap').slick({
                 dots: false,
-                infinite: true,
+                infinite: clientLogoCount > 6,
                 autoplay: true,
                 autoplaySpeed: 2000,
                 arrows: false,
                 speed: 1000,
-                slidesToShow: 6,
+                slidesToShow: Math.min(6, clientLogoCount),
                 slidesToScroll: 1,
                 responsive: [
                     {
                         breakpoint: 1200,
                         settings: {
-                            slidesToShow: 5,
+                            slidesToShow: Math.min(5, clientLogoCount),
                         }
                     },
                     {
                         breakpoint: 992,
                         settings: {
-                            slidesToShow: 4,
+                            slidesToShow: Math.min(4, clientLogoCount),
                         }
                     },
                     {
                         breakpoint: 767,
                         settings: {
-                            slidesToShow: 3,
+                            slidesToShow: Math.min(3, clientLogoCount),
                         }
                     },
                     {
                         breakpoint: 575,
                         settings: {
-                            slidesToShow: 2,
+                            slidesToShow: Math.min(2, clientLogoCount),
                         }
                     }
                 ]
