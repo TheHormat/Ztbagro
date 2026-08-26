@@ -1,1 +1,0 @@
-Compress-Archive -Path "C:\Users\PC\Desktop\Teserrufat-main\*" -DestinationPath "C:\Users\PC\Desktop\teserrufat.zip"
